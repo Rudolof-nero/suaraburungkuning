@@ -1,0 +1,2204 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suara Burung Kuning — Jurnal Pemikiran Papua</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Lora:ital,wght@0,400;0,600;1,400&family=Josefin+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ─── RESET & ROOT ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --kuning: #F5C518;
+  --kuning-dark: #D4A017;
+  --kuning-pale: #FFF8DC;
+  --kuning-light: #FFFBEA;
+  --hijau-hutan: #1B3A2D;
+  --hijau-mid: #2D5A40;
+  --coklat-kayu: #5C3D1E;
+  --coklat-light: #8B6340;
+  --krem: #F7F1E3;
+  --putih: #FEFCF7;
+  --abu: #7A7068;
+  --teks: #1A1410;
+  --garis: rgba(245,197,24,0.25);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--putih);
+  color: var(--teks);
+  overflow-x: hidden;
+}
+
+/* ─── NOISE TEXTURE OVERLAY ────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ─── HEADER / NAVBAR ──────────────────────────────────────────────── */
+#navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  background: rgba(27,58,45,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 2px solid var(--kuning);
+  transition: all 0.3s ease;
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.nav-logo-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+}
+
+.nav-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.nav-logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--kuning);
+  letter-spacing: 0.02em;
+}
+
+.nav-logo-sub {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.55rem;
+  color: rgba(245,197,24,0.6);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--kuning); }
+
+.nav-submit {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hijau-hutan);
+  background: var(--kuning);
+  border: none;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-submit:hover {
+  background: var(--kuning-dark);
+  transform: translateY(-1px);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--kuning);
+  transition: all 0.3s;
+}
+
+/* ─── HERO ─────────────────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  background: var(--hijau-hutan);
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding-top: 64px;
+}
+
+/* Decorative jungle pattern */
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 70% 40%, rgba(245,197,24,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(45,90,64,0.8) 0%, transparent 60%);
+}
+
+.hero-leaves {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-leaves svg {
+  position: absolute;
+  opacity: 0.08;
+}
+
+.hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 5rem 2rem 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--kuning);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-label::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--kuning);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--putih);
+  margin-bottom: 1rem;
+}
+
+.hero-title em {
+  color: var(--kuning);
+  font-style: italic;
+}
+
+.hero-tagline {
+  font-family: 'Lora', serif;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 2.5rem;
+  max-width: 480px;
+}
+
+.hero-cta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--kuning);
+  color: var(--hijau-hutan);
+  border: 2px solid var(--kuning);
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--kuning);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: transparent;
+  color: rgba(255,255,255,0.8);
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 14px 28px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s;
+}
+
+.btn-outline:hover {
+  border-color: var(--kuning);
+  color: var(--kuning);
+}
+
+/* Hero Bird Illustration */
+.hero-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.hero-bird-wrap {
+  position: relative;
+  width: 320px;
+  height: 320px;
+}
+
+.hero-circle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(245,197,24,0.2);
+  animation: pulse-ring 3s ease-in-out infinite;
+}
+
+.hero-circle:nth-child(2) {
+  inset: 20px;
+  border-color: rgba(245,197,24,0.15);
+  animation-delay: 0.5s;
+}
+
+.hero-circle:nth-child(3) {
+  inset: 40px;
+  background: rgba(245,197,24,0.04);
+  border-color: rgba(245,197,24,0.25);
+  animation: none;
+}
+
+@keyframes pulse-ring {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.03); opacity: 1; }
+}
+
+.hero-bird-svg {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: bird-float 4s ease-in-out infinite;
+}
+
+@keyframes bird-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+.hero-stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245,197,24,0.15);
+}
+
+.stat-item { flex: 1; }
+
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--kuning);
+}
+
+.stat-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-top: 2px;
+}
+
+/* ─── MARQUEE TICKER ────────────────────────────────────────────────── */
+.ticker {
+  background: var(--kuning);
+  padding: 10px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-inner {
+  display: inline-flex;
+  animation: marquee 30s linear infinite;
+}
+
+.ticker-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hijau-hutan);
+  padding: 0 2rem;
+}
+
+.ticker-sep {
+  color: var(--coklat-kayu);
+  opacity: 0.5;
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ─── SECTION COMMONS ───────────────────────────────────────────────── */
+.section {
+  padding: 6rem 2rem;
+}
+
+.section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 3.5rem;
+}
+
+.section-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--kuning-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.75rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  max-width: 60px;
+  height: 1px;
+  background: var(--kuning-dark);
+  opacity: 0.5;
+}
+
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: var(--hijau-hutan);
+  line-height: 1.2;
+}
+
+/* ─── FEATURED ARTICLE ──────────────────────────────────────────────── */
+#featured {
+  background: var(--krem);
+  border-top: 4px solid var(--kuning);
+}
+
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.featured-card {
+  background: var(--putih);
+  border: 1px solid rgba(92,61,30,0.12);
+  transition: all 0.3s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(27,58,45,0.12);
+}
+
+.featured-card-image {
+  width: 100%;
+  aspect-ratio: 16/9;
+  background: var(--hijau-hutan);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.featured-card-image svg {
+  opacity: 0.15;
+}
+
+.featured-card-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: var(--kuning);
+  color: var(--hijau-hutan);
+  padding: 4px 10px;
+}
+
+.featured-card-body {
+  padding: 1.75rem;
+}
+
+.card-category {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--coklat-kayu);
+  margin-bottom: 0.6rem;
+}
+
+.card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--hijau-hutan);
+  line-height: 1.3;
+  margin-bottom: 0.75rem;
+}
+
+.card-title-sm {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--hijau-hutan);
+  line-height: 1.35;
+  margin-bottom: 0.5rem;
+}
+
+.card-excerpt {
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--abu);
+  margin-bottom: 1.25rem;
+}
+
+.card-excerpt-sm {
+  font-family: 'Lora', serif;
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--abu);
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(92,61,30,0.1);
+}
+
+.card-author {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--coklat-kayu);
+}
+
+.card-date {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  color: var(--abu);
+  margin-left: auto;
+}
+
+.card-read {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  color: var(--abu);
+}
+
+.featured-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.sidebar-card {
+  background: var(--putih);
+  border: 1px solid rgba(92,61,30,0.12);
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  transition: all 0.25s;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.sidebar-card:hover {
+  transform: translateX(4px);
+  border-color: var(--kuning);
+}
+
+.sidebar-card-accent {
+  width: 4px;
+  background: var(--kuning);
+  flex-shrink: 0;
+}
+
+.sidebar-card-body {
+  padding: 1.25rem;
+  flex: 1;
+}
+
+/* ─── ARTICLES GRID ─────────────────────────────────────────────────── */
+#articles {
+  background: var(--putih);
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.article-card {
+  border-bottom: 3px solid transparent;
+  padding-bottom: 1.5rem;
+  cursor: pointer;
+  transition: all 0.25s;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.article-card:hover {
+  border-bottom-color: var(--kuning);
+}
+
+.article-card:hover .article-card-title {
+  color: var(--hijau-mid);
+}
+
+.article-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: rgba(245,197,24,0.2);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.article-card-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--kuning-dark);
+  margin-bottom: 0.5rem;
+}
+
+.article-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--hijau-hutan);
+  line-height: 1.35;
+  margin-bottom: 0.6rem;
+  transition: color 0.2s;
+}
+
+.article-card-desc {
+  font-family: 'Lora', serif;
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: var(--abu);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.article-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(92,61,30,0.08);
+}
+
+/* ─── CATEGORIES ────────────────────────────────────────────────────── */
+#categories {
+  background: var(--hijau-hutan);
+  padding: 5rem 2rem;
+}
+
+#categories .section-title { color: var(--putih); }
+#categories .section-label { color: rgba(245,197,24,0.8); }
+#categories .section-label::after { background: rgba(245,197,24,0.4); }
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.cat-card {
+  border: 1px solid rgba(245,197,24,0.2);
+  padding: 2rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 0;
+  background: rgba(245,197,24,0.08);
+  transition: height 0.3s;
+}
+
+.cat-card:hover::before { height: 100%; }
+
+.cat-card:hover {
+  border-color: var(--kuning);
+  transform: translateY(-3px);
+}
+
+.cat-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(245,197,24,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.cat-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--putih);
+  margin-bottom: 0.4rem;
+}
+
+.cat-count {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: rgba(245,197,24,0.6);
+  text-transform: uppercase;
+}
+
+/* ─── ABOUT / MISI ──────────────────────────────────────────────────── */
+#about {
+  background: var(--krem);
+  padding: 6rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+#about::before {
+  content: '"';
+  position: absolute;
+  top: -2rem;
+  right: 5%;
+  font-family: 'Playfair Display', serif;
+  font-size: 20rem;
+  color: rgba(245,197,24,0.06);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.about-bird {
+  display: flex;
+  justify-content: center;
+}
+
+.about-bird-frame {
+  width: 360px;
+  height: 360px;
+  position: relative;
+}
+
+.about-frame-border {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--kuning);
+  transform: rotate(3deg);
+}
+
+.about-frame-inner {
+  position: absolute;
+  inset: 12px;
+  background: var(--hijau-hutan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-frame-inner svg {
+  opacity: 0.7;
+}
+
+.about-content {}
+
+.about-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--hijau-hutan);
+  line-height: 1.25;
+  margin-bottom: 1.5rem;
+}
+
+.about-title em {
+  color: var(--kuning-dark);
+  font-style: italic;
+}
+
+.about-text {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #4A4035;
+  margin-bottom: 1.25rem;
+}
+
+.about-values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.value-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.value-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--kuning);
+  border-radius: 50%;
+  margin-top: 6px;
+  flex-shrink: 0;
+}
+
+.value-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--hijau-hutan);
+  line-height: 1.4;
+}
+
+/* ─── SUBMIT SECTION ────────────────────────────────────────────────── */
+#submit {
+  background: var(--hijau-mid);
+  padding: 5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+#submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(245,197,24,0.06) 0%, transparent 70%);
+}
+
+.submit-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.submit-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--putih);
+  margin-bottom: 1rem;
+}
+
+.submit-subtitle {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.submit-form {
+  display: flex;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto 2rem;
+}
+
+.submit-input {
+  flex: 1;
+  padding: 14px 18px;
+  border: 2px solid rgba(245,197,24,0.4);
+  border-right: none;
+  background: rgba(255,255,255,0.08);
+  color: var(--putih);
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.submit-input::placeholder { color: rgba(255,255,255,0.35); }
+.submit-input:focus { border-color: var(--kuning); }
+
+.submit-btn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--kuning);
+  color: var(--hijau-hutan);
+  border: 2px solid var(--kuning);
+  padding: 14px 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.submit-btn:hover { background: var(--kuning-dark); }
+
+.submit-note {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(245,197,24,0.5);
+  text-transform: uppercase;
+}
+
+/* ─── EDITORIAL BOARD ───────────────────────────────────────────────── */
+#editorial {
+  background: var(--putih);
+  padding: 5rem 2rem;
+}
+
+.editorial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.editor-card {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  border: 1px solid rgba(92,61,30,0.1);
+  transition: all 0.25s;
+}
+
+.editor-card:hover {
+  border-color: var(--kuning);
+  transform: translateY(-3px);
+}
+
+.editor-avatar {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--hijau-hutan);
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--kuning);
+  border: 2px solid rgba(245,197,24,0.3);
+}
+
+.editor-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--hijau-hutan);
+  margin-bottom: 0.25rem;
+}
+
+.editor-role {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--abu);
+}
+
+/* ─── FOOTER ────────────────────────────────────────────────────────── */
+footer {
+  background: var(--teks);
+  padding: 4rem 2rem 2rem;
+  color: rgba(255,255,255,0.6);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 2rem;
+}
+
+.footer-brand-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--kuning);
+  margin-bottom: 0.25rem;
+}
+
+.footer-brand-tagline {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245,197,24,0.4);
+  margin-bottom: 1rem;
+}
+
+.footer-desc {
+  font-family: 'Lora', serif;
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.45);
+}
+
+.footer-col-title {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 1.25rem;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.footer-links a {
+  font-family: 'Lora', serif;
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--kuning); }
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-copy {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.25);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-link {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.social-link:hover {
+  border-color: var(--kuning);
+  background: rgba(245,197,24,0.1);
+}
+
+.social-link svg {
+  width: 14px;
+  height: 14px;
+  fill: rgba(255,255,255,0.5);
+  transition: fill 0.2s;
+}
+
+.social-link:hover svg { fill: var(--kuning); }
+
+/* ─── MODAL: BACA ARTIKEL ───────────────────────────────────────────── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10,20,15,0.85);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  backdrop-filter: blur(6px);
+}
+
+.modal-overlay.open {
+  display: flex;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-box {
+  background: var(--putih);
+  max-width: 780px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  background: var(--hijau-hutan);
+  padding: 2rem 2.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.modal-close {
+  background: none;
+  border: 1px solid rgba(245,197,24,0.3);
+  color: var(--kuning);
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.modal-close:hover { background: rgba(245,197,24,0.1); }
+
+.modal-cat {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--kuning);
+  margin-bottom: 0.5rem;
+}
+
+.modal-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--putih);
+  line-height: 1.3;
+}
+
+.modal-body {
+  padding: 2.5rem;
+}
+
+.modal-meta {
+  display: flex;
+  gap: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+  border-bottom: 2px solid var(--kuning);
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--coklat-kayu);
+  flex-wrap: wrap;
+}
+
+.modal-text {
+  font-family: 'Lora', serif;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #2A2018;
+}
+
+.modal-text p { margin-bottom: 1.25rem; }
+
+.modal-text .abstract-box {
+  background: var(--krem);
+  border-left: 4px solid var(--kuning);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2rem;
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--abu);
+}
+
+.modal-text h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--hijau-hutan);
+  margin: 2rem 0 0.75rem;
+}
+
+/* ─── MODAL: SUBMIT ─────────────────────────────────────────────────── */
+.submit-modal .modal-box {
+  max-width: 620px;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-label {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--hijau-hutan);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid rgba(92,61,30,0.2);
+  background: var(--krem);
+  font-family: 'Lora', serif;
+  font-size: 0.9rem;
+  color: var(--teks);
+  outline: none;
+  transition: border-color 0.2s;
+  -webkit-appearance: none;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--kuning-dark);
+}
+
+.form-textarea { min-height: 120px; resize: vertical; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.form-submit-btn {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--hijau-hutan);
+  color: var(--kuning);
+  border: 2px solid var(--hijau-hutan);
+  padding: 14px 28px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+  transition: all 0.2s;
+}
+
+.form-submit-btn:hover {
+  background: var(--hijau-mid);
+}
+
+/* ─── LOAD MORE ─────────────────────────────────────────────────────── */
+.load-more-wrap {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-visual { display: none; }
+  .featured-grid { grid-template-columns: 1fr; }
+  .articles-grid { grid-template-columns: 1fr 1fr; }
+  .categories-grid { grid-template-columns: 1fr 1fr; }
+  .about-inner { grid-template-columns: 1fr; }
+  .about-bird { display: none; }
+  .editorial-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-submit { display: none; }
+  .hamburger { display: flex; }
+}
+
+@media (max-width: 580px) {
+  .articles-grid { grid-template-columns: 1fr; }
+  .categories-grid { grid-template-columns: 1fr 1fr; }
+  .editorial-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .hero-stats { gap: 1rem; }
+}
+
+/* ─── ANIMATIONS ────────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- ─── NAVBAR ─────────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo">
+      <svg class="nav-logo-icon" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="19" stroke="#F5C518" stroke-width="1.5"/>
+        <!-- Simple bird silhouette -->
+        <path d="M8 22 Q12 14 20 16 Q24 10 32 12 Q28 16 26 18 Q30 20 28 24 Q24 20 20 22 Q16 26 8 22Z" fill="#F5C518" opacity="0.9"/>
+        <circle cx="28" cy="13" r="1.5" fill="#F5C518"/>
+      </svg>
+      <div class="nav-logo-text">
+        <span class="nav-logo-main">Suara Burung Kuning</span>
+        <span class="nav-logo-sub">Jurnal Pemikiran Papua</span>
+      </div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#featured">Terbaru</a></li>
+      <li><a href="#articles">Artikel</a></li>
+      <li><a href="#categories">Kategori</a></li>
+      <li><a href="#about">Tentang</a></li>
+      <li><a href="#editorial">Redaksi</a></li>
+    </ul>
+
+    <button class="nav-submit" onclick="openSubmitModal()">Kirim Tulisan</button>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── HERO ───────────────────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="hero-leaves">
+    <svg width="400" height="600" style="top:-100px;right:-100px" viewBox="0 0 400 600">
+      <ellipse cx="300" cy="200" rx="180" ry="80" fill="#F5C518" transform="rotate(-30 300 200)"/>
+      <ellipse cx="100" cy="400" rx="140" ry="60" fill="#2D5A40" transform="rotate(20 100 400)"/>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-label">Jurnal Pemikiran Papua</div>
+      <h1 class="hero-title">
+        Suara<br>
+        <em>Burung</em><br>
+        Kuning
+      </h1>
+      <p class="hero-tagline">
+        Platform publikasi akademis dan pemikiran kritis tentang isu-isu sosial, budaya, teologi, dan hak masyarakat adat di tanah Papua dan Asia Pasifik.
+      </p>
+      <div class="hero-cta">
+        <a href="#articles" class="btn-primary">Baca Artikel</a>
+        <a href="#about" class="btn-outline">Tentang Kami</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-num">48</div>
+          <div class="stat-label">Artikel Terbit</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">17</div>
+          <div class="stat-label">Penulis Aktif</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">6</div>
+          <div class="stat-label">Kategori</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-bird-wrap">
+        <div class="hero-circle"></div>
+        <div class="hero-circle"></div>
+        <div class="hero-circle"></div>
+        <div class="hero-bird-svg">
+          <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Decorative bird of paradise -->
+            <circle cx="100" cy="100" r="80" stroke="rgba(245,197,24,0.3)" stroke-width="1" stroke-dasharray="4 6"/>
+            <!-- Body -->
+            <path d="M60 105 Q75 80 100 85 Q115 68 145 72 Q138 85 130 92 Q145 98 140 112 Q128 100 110 108 Q95 120 60 105Z" fill="#F5C518"/>
+            <!-- Wing detail -->
+            <path d="M100 85 Q108 78 120 80 Q115 86 110 90Z" fill="#D4A017"/>
+            <!-- Tail feathers -->
+            <path d="M60 105 Q48 110 38 130 Q52 118 62 120Z" fill="#F5C518" opacity="0.8"/>
+            <path d="M60 105 Q44 118 35 142 Q50 126 63 126Z" fill="#F5C518" opacity="0.6"/>
+            <path d="M60 105 Q42 126 36 150 Q52 132 65 130Z" fill="#F5C518" opacity="0.4"/>
+            <!-- Eye -->
+            <circle cx="137" cy="74" r="3.5" fill="#1B3A2D"/>
+            <circle cx="138.5" cy="73" r="1" fill="white"/>
+            <!-- Beak -->
+            <path d="M147 73 L158 69 L150 76Z" fill="#D4A017"/>
+            <!-- Decorative elements -->
+            <circle cx="100" cy="100" r="3" fill="rgba(245,197,24,0.4)"/>
+            <path d="M85 60 Q88 50 95 55" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+            <path d="M75 65 Q76 55 83 58" stroke="#F5C518" stroke-width="1.5" stroke-linecap="round" opacity="0.4"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TICKER ─────────────────────────────────────────────────────────── -->
+<div class="ticker">
+  <div class="ticker-inner" id="ticker-inner">
+    <span class="ticker-text">Kooptasi & Intimidasi Struktural <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Hak Masyarakat Adat Papua <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Teologi Kontekstual <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Konflik Agraria & PSN <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Gerakan Sosial Berbasis Komunitas <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Pembungkaman Suara Adat <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">FPIC & Hak Penentuan Nasib Sendiri <span class="ticker-sep">✦</span></span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-text">Kooptasi & Intimidasi Struktural <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Hak Masyarakat Adat Papua <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Teologi Kontekstual <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Konflik Agraria & PSN <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Gerakan Sosial Berbasis Komunitas <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">Pembungkaman Suara Adat <span class="ticker-sep">✦</span></span>
+    <span class="ticker-text">FPIC & Hak Penentuan Nasib Sendiri <span class="ticker-sep">✦</span></span>
+  </div>
+</div>
+
+<!-- ─── FEATURED ARTICLES ──────────────────────────────────────────────── -->
+<section id="featured" class="section">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Artikel Pilihan</div>
+      <h2 class="section-title">Tulisan Terbaru & Unggulan</h2>
+    </div>
+
+    <div class="featured-grid">
+      <!-- Main Featured -->
+      <a class="featured-card" onclick="openArticle('main')" href="#">
+        <div class="featured-card-image">
+          <svg width="200" height="120" viewBox="0 0 200 120">
+            <path d="M20 80 Q50 40 100 50 Q130 20 180 30 Q165 55 150 65 Q175 75 165 95 Q145 70 110 80 Q80 100 20 80Z" fill="#F5C518"/>
+          </svg>
+          <div class="featured-card-badge">✦ Artikel Utama</div>
+        </div>
+        <div class="featured-card-body">
+          <div class="card-category">Studi Komparatif · Hak Adat</div>
+          <h3 class="card-title">Kooptasi, Intimidasi Struktural, dan Pembungkaman Suara Masyarakat Adat</h3>
+          <p class="card-excerpt">Kajian komparatif pola penundukan tokoh adat dalam konflik agraria dan Proyek Strategis Negara — dari Honduras, Nigeria, Chili, hingga India dan Papua.</p>
+          <div class="card-meta">
+            <span class="card-author">Rudolof Nerokepou</span>
+            <span class="card-date">Juni 2025</span>
+            <span class="card-read">18 mnt baca</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Sidebar Cards -->
+      <div class="featured-sidebar">
+        <a class="sidebar-card" onclick="openArticle('s1')" href="#">
+          <div class="sidebar-card-accent"></div>
+          <div class="sidebar-card-body">
+            <div class="card-category">Teologi Kontekstual</div>
+            <h4 class="card-title-sm">Gereja dan Mandat Profetik di Tengah Krisis Agraria Papua</h4>
+            <p class="card-excerpt-sm">Bagaimana gereja merespons tekanan struktural yang menindas komunitas adat? Sebuah refleksi teologis dari Sentani.</p>
+            <div class="card-meta">
+              <span class="card-author">Yuliana Manufandu</span>
+              <span class="card-date">Mei 2025</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="sidebar-card" onclick="openArticle('s2')" href="#">
+          <div class="sidebar-card-accent"></div>
+          <div class="sidebar-card-body">
+            <div class="card-category">Hukum Adat</div>
+            <h4 class="card-title-sm">FPIC dalam Praktik: Antara Norma Internasional dan Realitas Lapangan</h4>
+            <p class="card-excerpt-sm">Menelusuri jarak antara prinsip Free, Prior and Informed Consent dengan implementasinya di wilayah PSN Indonesia.</p>
+            <div class="card-meta">
+              <span class="card-author">Oktavianus Wenda</span>
+              <span class="card-date">April 2025</span>
+            </div>
+          </div>
+        </a>
+
+        <a class="sidebar-card" onclick="openArticle('s3')" href="#">
+          <div class="sidebar-card-accent"></div>
+          <div class="sidebar-card-body">
+            <div class="card-category">Sosial Budaya</div>
+            <h4 class="card-title-sm">Perempuan Adat sebagai Penjaga Pengetahuan Ekologis Lokal</h4>
+            <p class="card-excerpt-sm">Peran strategis perempuan dalam mempertahankan kearifan lokal di tengah arus modernisasi dan eksploitasi sumber daya.</p>
+            <div class="card-meta">
+              <span class="card-author">Maria Kogoya</span>
+              <span class="card-date">Maret 2025</span>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ARTICLES GRID ───────────────────────────────────────────────────── -->
+<section id="articles" class="section" style="background:var(--putih);">
+  <div class="section-inner">
+    <div class="section-header" style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+      <div>
+        <div class="section-label">Semua Artikel</div>
+        <h2 class="section-title">Arsip Tulisan</h2>
+      </div>
+      <select class="form-select" style="width:auto;padding:8px 14px;font-size:0.75rem" onchange="filterArticles(this.value)">
+        <option value="all">Semua Kategori</option>
+        <option value="adat">Hak Adat</option>
+        <option value="teologi">Teologi</option>
+        <option value="agraria">Agraria</option>
+        <option value="sosial">Sosial Budaya</option>
+        <option value="hukum">Hukum</option>
+        <option value="lingkungan">Lingkungan</option>
+      </select>
+    </div>
+
+    <div class="articles-grid" id="articles-grid">
+      <!-- Articles populated by JS -->
+    </div>
+
+    <div class="load-more-wrap">
+      <button class="btn-primary" onclick="loadMore()" id="load-more-btn">Muat Lebih Banyak</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CATEGORIES ─────────────────────────────────────────────────────── -->
+<section id="categories" class="section" style="padding:5rem 2rem">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Topik</div>
+      <h2 class="section-title">Kategori Tulisan</h2>
+    </div>
+
+    <div class="categories-grid">
+      <div class="cat-card" onclick="filterArticles('adat');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <div class="cat-icon">⚖️</div>
+        <div class="cat-name">Hak Adat</div>
+        <div class="cat-count">12 Artikel</div>
+      </div>
+      <div class="cat-card" onclick="filterArticles('teologi');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <div class="cat-icon">✝️</div>
+        <div class="cat-name">Teologi</div>
+        <div class="cat-count">9 Artikel</div>
+      </div>
+      <div class="cat-card" onclick="filterArticles('agraria');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <div class="cat-icon">🌿</div>
+        <div class="cat-name">Konflik Agraria</div>
+        <div class="cat-count">11 Artikel</div>
+      </div>
+      <div class="cat-card" onclick="filterArticles('sosial');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <div class="cat-icon">🦅</div>
+        <div class="cat-name">Sosial Budaya</div>
+        <div class="cat-count">8 Artikel</div>
+      </div>
+      <div class="cat-card" onclick="filterArticles('hukum');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <div class="cat-icon">📜</div>
+        <div class="cat-name">Hukum & Kebijakan</div>
+        <div class="cat-count">6 Artikel</div>
+      </div>
+      <div class="cat-card" onclick="filterArticles('lingkungan');document.getElementById('articles').scrollIntoView({behavior:'smooth'})">
+        <div class="cat-icon">🌍</div>
+        <div class="cat-name">Lingkungan</div>
+        <div class="cat-count">7 Artikel</div>
+      </div>
+      <div class="cat-card" onclick="alert('Fitur pencarian akan segera hadir!')">
+        <div class="cat-icon">🔍</div>
+        <div class="cat-name">Cari Artikel</div>
+        <div class="cat-count">Segera hadir</div>
+      </div>
+      <div class="cat-card" onclick="openSubmitModal()">
+        <div class="cat-icon">✍️</div>
+        <div class="cat-name">Kirim Tulisan</div>
+        <div class="cat-count">Kontribusi sekarang</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ───────────────────────────────────────────────────────────── -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-bird">
+      <div class="about-bird-frame">
+        <div class="about-frame-border"></div>
+        <div class="about-frame-inner">
+          <svg width="260" height="260" viewBox="0 0 260 260" fill="none">
+            <!-- Decorative circle -->
+            <circle cx="130" cy="130" r="100" stroke="rgba(245,197,24,0.15)" stroke-width="1" stroke-dasharray="3 5"/>
+            <circle cx="130" cy="130" r="70" stroke="rgba(245,197,24,0.1)" stroke-width="1"/>
+            <!-- Large bird of paradise -->
+            <path d="M70 145 Q90 100 130 110 Q148 84 190 90 Q180 112 168 122 Q190 132 184 150 Q166 128 140 138 Q120 160 70 145Z" fill="#F5C518" opacity="0.9"/>
+            <!-- Wing shading -->
+            <path d="M130 110 Q142 102 158 106 Q150 114 144 118Z" fill="#D4A017"/>
+            <!-- Long tail feathers (cendrawasih) -->
+            <path d="M70 145 Q50 155 28 185 Q50 165 75 168Z" fill="#F5C518" opacity="0.8"/>
+            <path d="M70 145 Q44 162 22 198 Q48 172 76 174Z" fill="#F5C518" opacity="0.65"/>
+            <path d="M70 145 Q40 168 20 208 Q46 178 78 178Z" fill="#F5C518" opacity="0.5"/>
+            <path d="M70 145 Q36 175 18 218 Q44 184 80 182Z" fill="#F5C518" opacity="0.35"/>
+            <!-- Head detail -->
+            <path d="M174 92 Q180 82 186 84 Q183 90 180 94Z" fill="#D4A017"/>
+            <!-- Eye -->
+            <circle cx="185" cy="91" r="4" fill="#1B3A2D"/>
+            <circle cx="186.5" cy="90" r="1.5" fill="white"/>
+            <!-- Beak -->
+            <path d="M192 90 L206 85 L196 95Z" fill="#D4A017"/>
+            <!-- Decorative dots -->
+            <circle cx="120" cy="125" r="2" fill="rgba(245,197,24,0.5)"/>
+            <circle cx="108" cy="132" r="1.5" fill="rgba(245,197,24,0.4)"/>
+            <circle cx="95" cy="140" r="1" fill="rgba(245,197,24,0.3)"/>
+            <!-- Branch -->
+            <path d="M40 200 Q60 190 80 195 Q100 185 120 188" stroke="#2D5A40" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-content fade-up">
+      <div class="section-label">Tentang Kami</div>
+      <h2 class="about-title">
+        Mengangkat Suara<br>yang <em>Terlupakan</em>
+      </h2>
+      <p class="about-text">
+        <em>Suara Burung Kuning</em> adalah platform jurnal akademis dan pemikiran kritis yang didedikasikan untuk mempublikasikan tulisan-tulisan tentang isu sosial, budaya, teologi kontekstual, dan hak masyarakat adat — khususnya di tanah Papua dan kawasan Asia Pasifik.
+      </p>
+      <p class="about-text">
+        Kami percaya bahwa ilmu pengetahuan sejati lahir dari pengalaman hidup komunitas itu sendiri. Seperti burung kuning yang bernyanyi di tengah hutan, kami hadir untuk memastikan suara-suara yang sering diabaikan dapat terdengar lebih luas di ruang akademis dan publik.
+      </p>
+      <p class="about-text">
+        Platform ini membuka pintu bagi akademisi, teolog, aktivis, dan pemikir adat untuk menerbitkan karya mereka tanpa biaya, dengan proses peer-review yang ketat dan berpihak pada kebenaran.
+      </p>
+      <div class="about-values">
+        <div class="value-item">
+          <div class="value-dot"></div>
+          <div class="value-text">Berpihak pada keadilan & kebenaran</div>
+        </div>
+        <div class="value-item">
+          <div class="value-dot"></div>
+          <div class="value-text">Akses terbuka tanpa biaya</div>
+        </div>
+        <div class="value-item">
+          <div class="value-dot"></div>
+          <div class="value-text">Peer-review ketat & independen</div>
+        </div>
+        <div class="value-item">
+          <div class="value-dot"></div>
+          <div class="value-text">Perspektif lokal — jangkauan global</div>
+        </div>
+        <div class="value-item">
+          <div class="value-dot"></div>
+          <div class="value-text">Menghormati kearifan adat</div>
+        </div>
+        <div class="value-item">
+          <div class="value-dot"></div>
+          <div class="value-text">Interdisipliner & inklusif</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SUBMIT CALL ─────────────────────────────────────────────────────── -->
+<section id="submit">
+  <div class="submit-inner">
+    <div class="section-label" style="justify-content:center;color:rgba(245,197,24,0.7)">Kontribusi</div>
+    <h2 class="submit-title">Kirim Tulisanmu</h2>
+    <p class="submit-subtitle">
+      Kami menerima artikel ilmiah, esai kritis, opini akademis, dan laporan lapangan. Semua tulisan diterbitkan secara gratis dan terbuka untuk publik.
+    </p>
+    <div class="submit-form">
+      <input type="email" class="submit-input" placeholder="alamat email kamu" id="newsletter-email">
+      <button class="submit-btn" onclick="subscribeNewsletter()">Langganan</button>
+    </div>
+    <p class="submit-note">Atau <span style="color:var(--kuning);cursor:pointer;text-decoration:underline" onclick="openSubmitModal()">klik di sini</span> untuk menghubungi redaksi dan mengirim artikel</p>
+  </div>
+</section>
+
+<!-- ─── EDITORIAL BOARD ─────────────────────────────────────────────────── -->
+<section id="editorial">
+  <div class="section-inner">
+    <div class="section-header" style="text-align:center">
+      <div class="section-label" style="justify-content:center">Tim Redaksi</div>
+      <h2 class="section-title">Dewan Editor</h2>
+    </div>
+
+    <div class="editorial-grid">
+      <div class="editor-card">
+        <div class="editor-avatar">RN</div>
+        <div class="editor-name">Rudolof Nerokepou</div>
+        <div class="editor-role">Pemimpin Redaksi</div>
+      </div>
+      <div class="editor-card">
+        <div class="editor-avatar">YM</div>
+        <div class="editor-name">Yuliana Manufandu</div>
+        <div class="editor-role">Editor Teologi</div>
+      </div>
+      <div class="editor-card">
+        <div class="editor-avatar">OW</div>
+        <div class="editor-name">Oktavianus Wenda</div>
+        <div class="editor-role">Editor Hukum & Adat</div>
+      </div>
+      <div class="editor-card">
+        <div class="editor-avatar">MK</div>
+        <div class="editor-name">Maria Kogoya</div>
+        <div class="editor-role">Editor Sosial Budaya</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Suara Burung Kuning</div>
+        <div class="footer-brand-tagline">Jurnal Pemikiran Papua</div>
+        <p class="footer-desc">Platform publikasi akademis dan pemikiran kritis tentang isu-isu sosial, budaya, teologi, dan hak masyarakat adat di Papua dan Asia Pasifik. Berpihak pada kebenaran, berpijak pada komunitas.</p>
+      </div>
+      <div>
+        <div class="footer-col-title">Navigasi</div>
+        <ul class="footer-links">
+          <li><a href="#featured">Artikel Terbaru</a></li>
+          <li><a href="#articles">Arsip Tulisan</a></li>
+          <li><a href="#categories">Kategori</a></li>
+          <li><a href="#about">Tentang Kami</a></li>
+          <li><a href="#editorial">Tim Redaksi</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Kategori</div>
+        <ul class="footer-links">
+          <li><a href="#">Hak Adat</a></li>
+          <li><a href="#">Teologi Kontekstual</a></li>
+          <li><a href="#">Konflik Agraria</a></li>
+          <li><a href="#">Sosial Budaya</a></li>
+          <li><a href="#">Hukum & Kebijakan</a></li>
+          <li><a href="#">Lingkungan</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Informasi</div>
+        <ul class="footer-links">
+          <li><a href="#" onclick="openSubmitModal()">Kirim Tulisan</a></li>
+          <li><a href="#">Panduan Penulis</a></li>
+          <li><a href="#">Kebijakan Privasi</a></li>
+          <li><a href="#">Lisensi Konten</a></li>
+          <li><a href="#">Hubungi Kami</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Suara Burung Kuning. Seluruh konten dilisensikan di bawah Creative Commons BY-NC-SA 4.0.</p>
+      <div class="footer-social">
+        <a class="social-link" href="#" title="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+        </a>
+        <a class="social-link" href="#" title="Twitter/X">
+          <svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"/></svg>
+        </a>
+        <a class="social-link" href="#" title="Email">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── MODAL: ARTICLE READER ──────────────────────────────────────────── -->
+<div class="modal-overlay" id="article-modal" onclick="closeModal(event,'article-modal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div>
+        <div class="modal-cat" id="modal-cat">Studi Komparatif · Hak Adat</div>
+        <h2 class="modal-title" id="modal-title">Judul Artikel</h2>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('article-modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta" id="modal-meta"></div>
+      <div class="modal-text" id="modal-content"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── MODAL: SUBMIT FORM ─────────────────────────────────────────────── -->
+<div class="modal-overlay submit-modal" id="submit-modal" onclick="closeModal(event,'submit-modal')">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div>
+        <div class="modal-cat">Kontribusi Penulis</div>
+        <h2 class="modal-title">Kirim Tulisan Anda</h2>
+      </div>
+      <button class="modal-close" onclick="document.getElementById('submit-modal').classList.remove('open')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-group">
+        <label class="form-label">Judul Artikel *</label>
+        <input type="text" class="form-input" placeholder="Judul lengkap tulisan Anda">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Nama Penulis *</label>
+          <input type="text" class="form-input" placeholder="Nama lengkap">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Institusi / Afiliasi</label>
+          <input type="text" class="form-input" placeholder="Universitas / Lembaga">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">Email *</label>
+          <input type="email" class="form-input" placeholder="email@domain.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Kategori *</label>
+          <select class="form-select">
+            <option value="">Pilih Kategori</option>
+            <option>Hak Adat</option>
+            <option>Teologi Kontekstual</option>
+            <option>Konflik Agraria</option>
+            <option>Sosial Budaya</option>
+            <option>Hukum & Kebijakan</option>
+            <option>Lingkungan</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Abstrak (max. 250 kata) *</label>
+        <textarea class="form-textarea" placeholder="Ringkasan singkat artikel Anda..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Pesan / Catatan untuk Redaksi</label>
+        <textarea class="form-textarea" style="min-height:80px" placeholder="Informasi tambahan yang ingin Anda sampaikan kepada tim redaksi..."></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Lampirkan File Artikel</label>
+        <input type="text" class="form-input" placeholder="Link Google Drive / Dropbox / URL dokumen">
+      </div>
+      <button class="form-submit-btn" onclick="submitForm()">✦ Kirim Tulisan ke Redaksi</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── DATA ─────────────────────────────────────────────────────────────────
+const allArticles = [
+  {
+    id: 1, num: '01', cat: 'adat', catLabel: 'Hak Adat',
+    title: 'Mekanisme FPIC dan Subversinya dalam Proyek Ekstraktif Papua',
+    desc: 'Studi kasus penerapan prinsip Free, Prior and Informed Consent di tiga wilayah adat Papua yang terdampak PSN, serta pola-pola subversi yang teridentifikasi.',
+    author: 'Oktavianus Wenda', date: 'Juni 2025', read: '14 mnt',
+    content: `<div class="abstract-box">Artikel ini mengkaji implementasi prinsip FPIC (Free, Prior and Informed Consent) di tiga wilayah adat Papua yang terdampak Proyek Strategis Nasional (PSN) sejak 2020.</div>
+    <p>Prinsip FPIC, yang dijamin oleh UNDRIP 2007 dan Konvensi ILO No. 169, mensyaratkan bahwa persetujuan masyarakat adat terhadap proyek yang berdampak pada wilayah mereka harus diperoleh secara bebas, didahulukan, dan berdasarkan informasi yang lengkap.</p>
+    <h3>I. Pendahuluan</h3>
+    <p>Namun dalam praktiknya, prinsip ini kerap disubversi melalui berbagai mekanisme: konsultasi yang tidak memadai, manipulasi representasi komunitas, dan tekanan terhadap figur-figur adat yang berpengaruh.</p>
+    <h3>II. Temuan Lapangan</h3>
+    <p>Penelitian ini dilakukan melalui wawancara mendalam dengan 47 informan dari tiga wilayah berbeda, serta analisis dokumen perizinan dan laporan LSM yang bekerja di kawasan tersebut. Temuan menunjukkan bahwa dari ketiga kasus yang diteliti, tidak satu pun memenuhi standar FPIC yang sesungguhnya.</p>`
+  },
+  {
+    id: 2, num: '02', cat: 'teologi', catLabel: 'Teologi',
+    title: 'Teologi Kontekstual Papua: Antara Tradisi dan Transformasi',
+    desc: 'Pergumulan teologis komunitas Kristen di Papua dalam merespons tekanan modernisasi, konflik lahan, dan perlawanan terhadap marginalisasi.',
+    author: 'Yuliana Manufandu', date: 'Mei 2025', read: '12 mnt',
+    content: `<div class="abstract-box">Artikel ini mengeksplorasi bagaimana komunitas Kristen Papua mengembangkan teologi kontekstual yang berakar pada pengalaman hidup dan perjuangan hak-hak mereka.</div>
+    <p>Teologi kontekstual bukan sekadar adaptasi doktrin; ia adalah pembacaan ulang Injil dari perspektif mereka yang tertindas. Di Papua, teologi ini lahir dari pertemuan antara kearifan adat dan iman Kristen yang telah berakar selama lebih dari satu abad.</p>
+    <h3>I. Konteks Papua</h3>
+    <p>Gereja-gereja di Papua menghadapi tantangan yang kompleks: bagaimana mempertahankan identitas teologis yang otentik sambil merespons secara kritis terhadap berbagai bentuk ketidakadilan yang dialami jemaat mereka.</p>`
+  },
+  {
+    id: 3, num: '03', cat: 'agraria', catLabel: 'Konflik Agraria',
+    title: 'Pemetaan Partisipatif sebagai Alat Perlawanan Tanah Adat',
+    desc: 'Penggunaan teknologi GIS dan pemetaan berbasis komunitas sebagai strategi dokumentasi dan advokasi hak wilayah adat di era digital.',
+    author: 'Benny Tabuni', date: 'April 2025', read: '10 mnt',
+    content: `<div class="abstract-box">Artikel ini mendokumentasikan pengalaman tiga komunitas adat di Papua Barat yang menggunakan pemetaan partisipatif sebagai instrumen advokasi hak wilayah mereka.</div>
+    <p>Di era di mana klaim atas tanah semakin membutuhkan bukti yang dapat diakui secara hukum dan administratif, pemetaan partisipatif telah muncul sebagai alat yang ampuh bagi komunitas adat untuk mendokumentasikan dan mempertahankan wilayah leluhur mereka.</p>`
+  },
+  {
+    id: 4, num: '04', cat: 'sosial', catLabel: 'Sosial Budaya',
+    title: 'Ritual Bakar Batu dan Konstruksi Solidaritas Komunal Melanesia',
+    desc: 'Analisis antropologis tentang ritual bakar batu sebagai mekanisme reproduksi kohesi sosial dan identitas kolektif masyarakat adat Papua.',
+    author: 'Dorce Maunsir', date: 'Maret 2025', read: '11 mnt',
+    content: `<div class="abstract-box">Studi ini menganalisis ritual bakar batu (Barapen) sebagai praktik budaya yang tidak hanya berfungsi seremonial, tetapi juga sebagai mekanisme reproduksi solidaritas sosial dan rekonstruksi identitas komunal.</div>
+    <p>Dalam perspektif antropologi budaya, ritual merupakan arena di mana komunitas mereproduksi nilai-nilai, mempertegas batas-batas identitas, dan menegosiasikan relasi kekuasaan internal.</p>`
+  },
+  {
+    id: 5, num: '05', cat: 'hukum', catLabel: 'Hukum & Kebijakan',
+    title: 'Undang-Undang Otonomi Khusus Papua: Evaluasi Dua Dekade Implementasi',
+    desc: 'Tinjauan kritis atas capaian dan kegagalan implementasi UU Otonomi Khusus Papua selama dua dekade, dengan fokus pada indikator kesejahteraan dan hak adat.',
+    author: 'Yohanis Mote', date: 'Februari 2025', read: '16 mnt',
+    content: `<div class="abstract-box">Dua dekade pasca-pengesahan UU No. 21 Tahun 2001 tentang Otonomi Khusus Papua, artikel ini melakukan evaluasi komprehensif atas implementasinya dengan menggunakan indikator kesejahteraan dan perlindungan hak adat.</div>
+    <p>Otonomi khusus dirancang sebagai solusi politik atas kompleksitas masalah Papua. Namun pertanyaannya adalah: sejauh mana otonomi ini benar-benar mengubah kondisi kehidupan masyarakat adat?</p>`
+  },
+  {
+    id: 6, num: '06', cat: 'lingkungan', catLabel: 'Lingkungan',
+    title: 'Deforestasi di Kepala Burung Papua: Data, Dampak, dan Perlawanan',
+    desc: 'Analisis data satelit deforestasi di wilayah Kepala Burung Papua Barat dan dampaknya terhadap kehidupan komunitas adat yang bergantung pada hutan.',
+    author: 'Lukas Sawaki', date: 'Januari 2025', read: '13 mnt',
+    content: `<div class="abstract-box">Menggunakan data citra satelit 2015–2024 dan survei lapangan, artikel ini mendokumentasikan laju deforestasi di wilayah Kepala Burung Papua Barat serta dampaknya terhadap komunitas adat.</div>
+    <p>Papua menyimpan salah satu kawasan hutan tropis terluas dan paling beragam hayati di dunia. Namun tekanan dari industri sawit, pertambangan, dan proyek infrastruktur terus menggerus tutupan hutan ini dengan laju yang mengkhawatirkan.</p>`
+  },
+];
+
+let visibleCount = 6;
+
+function renderArticles(filter = 'all') {
+  const grid = document.getElementById('articles-grid');
+  const filtered = filter === 'all' ? allArticles : allArticles.filter(a => a.cat === filter);
+  const shown = filtered.slice(0, visibleCount);
+
+  grid.innerHTML = shown.map((a, i) => `
+    <a class="article-card fade-up" onclick="openArticleById(${a.id})" href="#" style="transition-delay:${i*0.08}s">
+      <div class="article-num">${a.num}</div>
+      <div class="article-card-cat">${a.catLabel}</div>
+      <h3 class="article-card-title">${a.title}</h3>
+      <p class="article-card-desc">${a.desc}</p>
+      <div class="article-card-footer">
+        <span style="font-family:'Josefin Sans',sans-serif;font-size:.65rem;color:var(--coklat-kayu);font-weight:600">${a.author}</span>
+        <span style="font-family:'Josefin Sans',sans-serif;font-size:.62rem;color:var(--abu)">${a.date} · ${a.read} baca</span>
+      </div>
+    </a>
+  `).join('');
+
+  // Trigger fade-up
+  requestAnimationFrame(() => {
+    grid.querySelectorAll('.fade-up').forEach(el => {
+      setTimeout(() => el.classList.add('visible'), 50);
+    });
+  });
+
+  const btn = document.getElementById('load-more-btn');
+  if (filtered.length <= visibleCount) {
+    btn.style.display = 'none';
+  } else {
+    btn.style.display = 'inline-block';
+  }
+}
+
+function filterArticles(cat) {
+  visibleCount = 6;
+  renderArticles(cat);
+  window._currentFilter = cat;
+}
+
+function loadMore() {
+  visibleCount += 3;
+  renderArticles(window._currentFilter || 'all');
+}
+
+// ─── ARTICLE MODAL ──────────────────────────────────────────────────────
+const articlesData = {
+  main: {
+    cat: 'Studi Komparatif · Hak Adat',
+    title: 'Kooptasi, Intimidasi Struktural, dan Pembungkaman Suara Masyarakat Adat',
+    meta: ['Rudolof Nerokepou', 'STAKPN Sentani', 'Juni 2025', '18 menit baca'],
+    content: `<div class="abstract-box">Artikel ini mengkaji fenomena kooptasi tokoh masyarakat adat dalam konteks konflik agraria yang dipicu oleh Proyek Strategis Nasional (PSN) dan investasi ekstraktif berskala besar, dengan pendekatan studi kasus komparatif mencakup Honduras, Nigeria, Chili, dan India.</div>
+    <h3>I. Pendahuluan</h3>
+    <p>Dalam dua dekade terakhir, konflik antara masyarakat adat dan proyek-proyek pembangunan berskala besar telah menjadi salah satu arena pertarungan hak asasi manusia yang paling intens di berbagai belahan dunia. Negara-negara berkembang, termasuk Indonesia, menghadapi tegangan akut antara kepentingan percepatan pembangunan ekonomi nasional dan perlindungan hak-hak konstitusional masyarakat adat.</p>
+    <h3>II. Kerangka Teoritis</h3>
+    <p>Konsep kooptasi dalam konteks gerakan sosial merujuk pada proses di mana aktor kekuasaan — baik negara maupun korporasi — secara sengaja merekrut atau menaklukkan figur-figur kunci dari kelompok oposisi untuk melemahkan kohesi dan legitimasi gerakan tersebut (Selznick, 1949; Piven & Cloward, 1977).</p>
+    <p>Antonio Gramsci (1971) dalam konsep hegemoni memberikan fondasi teoritis penting: kekuasaan yang berlangsung lama tidak mengandalkan paksaan semata, melainkan pada kemampuan untuk memperoleh <em>consent</em> dari kelompok yang didominasi.</p>
+    <h3>III. Kajian Komparatif</h3>
+    <p>Dari keempat kasus yang dikaji — Honduras, Nigeria, Chili, dan India — dapat diidentifikasi sebuah arsitektur pembungkaman yang bekerja melalui tiga lapisan mekanisme yang saling memperkuat: (1) polarisasi komunitas, (2) isolasi figur kunci, dan (3) konstruksi narasi balik melalui media.</p>
+    <h3>IV. Kesimpulan</h3>
+    <p>Pemahaman terhadap pola-pola ini merupakan prasyarat bagi advokasi yang efektif. Ketika kita mengenali bahwa "perubahan pikiran" yang tiba-tiba dari seorang tokoh adat mengikuti <em>trajectory</em> yang sama persis dengan kasus-kasus yang terdokumentasi di berbagai penjuru dunia, kita memiliki basis untuk tidak tergesa-gesa menerima narasi publik yang ditawarkan.</p>`
+  },
+  s1: {
+    cat: 'Teologi Kontekstual',
+    title: 'Gereja dan Mandat Profetik di Tengah Krisis Agraria Papua',
+    meta: ['Yuliana Manufandu', 'Mei 2025', '9 menit baca'],
+    content: `<div class="abstract-box">Refleksi teologis tentang peran dan tanggung jawab gereja dalam merespons konflik agraria dan penggusuran masyarakat adat Papua.</div>
+    <p>Gereja di Papua berdiri di persimpangan: antara loyalitas institusional yang sering mengharuskan "netralitas" dan panggilan profetik yang menuntut keberpihakan pada yang tertindas. Artikel ini berargumen bahwa netralitas dalam situasi ketidakadilan yang nyata adalah sebuah bentuk keberpihakan — kepada status quo.</p>
+    <h3>Mandat Profetik dalam Tradisi Alkitab</h3>
+    <p>Dalam tradisi kenabian Perjanjian Lama, para nabi tidak pernah berdiri di luar konflik sosial-politik zamannya. Mereka justru berbicara langsung ke jantung kekuasaan, menantang raja dan sistem yang menindas orang miskin dan kelompok rentan.</p>`
+  },
+  s2: {
+    cat: 'Hukum Adat',
+    title: 'FPIC dalam Praktik: Antara Norma Internasional dan Realitas Lapangan',
+    meta: ['Oktavianus Wenda', 'April 2025', '11 menit baca'],
+    content: `<div class="abstract-box">Artikel ini menelusuri jarak antara prinsip FPIC sebagai standar internasional dan implementasinya di wilayah-wilayah yang terdampak PSN di Indonesia.</div>
+    <p>Free, Prior and Informed Consent bukan sekadar prosedur administratif; ia adalah ekspresi dari hak fundamental masyarakat adat untuk menentukan nasib sendiri. Namun dalam praktik, prinsip ini sering direduksi menjadi formalitas yang dilaksanakan setelah keputusan sesungguhnya telah diambil.</p>`
+  },
+  s3: {
+    cat: 'Sosial Budaya',
+    title: 'Perempuan Adat sebagai Penjaga Pengetahuan Ekologis Lokal',
+    meta: ['Maria Kogoya', 'Maret 2025', '8 menit baca'],
+    content: `<div class="abstract-box">Studi tentang peran strategis perempuan adat Papua dalam menjaga dan mewariskan pengetahuan ekologis lokal yang terancam oleh modernisasi.</div>
+    <p>Perempuan adat Papua adalah penyimpan pengetahuan yang kaya tentang ekosistem hutan, pertanian tradisional, dan pengelolaan sumber daya alam yang berkelanjutan. Pengetahuan ini tidak tersimpan dalam buku, melainkan dalam praktik hidup sehari-hari yang diwariskan dari generasi ke generasi.</p>`
+  }
+};
+
+function openArticle(id) {
+  const data = articlesData[id];
+  if (!data) return;
+  document.getElementById('modal-cat').textContent = data.cat;
+  document.getElementById('modal-title').textContent = data.title;
+  document.getElementById('modal-meta').innerHTML = data.meta.map(m =>
+    `<span>${m}</span>`
+  ).join('<span style="opacity:.3">·</span>');
+  document.getElementById('modal-content').innerHTML = data.content;
+  document.getElementById('article-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function openArticleById(id) {
+  const a = allArticles.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('modal-cat').textContent = a.catLabel;
+  document.getElementById('modal-title').textContent = a.title;
+  document.getElementById('modal-meta').innerHTML = [a.author, a.date, a.read + ' baca'].map(m =>
+    `<span>${m}</span>`
+  ).join('<span style="opacity:.3">·</span>');
+  document.getElementById('modal-content').innerHTML = a.content;
+  document.getElementById('article-modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  return false;
+}
+
+function closeModal(event, id) {
+  if (event.target === document.getElementById(id)) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+// ─── SUBMIT MODAL ────────────────────────────────────────────────────────
+// Mengarahkan ke email redaksi, atau dapat diganti link Google Form
+function openSubmitModal() {
+  alert("Fitur Kirim Tulisan: Silakan hubungi redaksi di email yang tertera di footer.");
+}
+
+function submitForm() {
+  const modal = document.getElementById('submit-modal');
+  modal.querySelector('.modal-body').innerHTML = `
+    <div style="text-align:center;padding:3rem 2rem">
+      <div style="font-size:3rem;margin-bottom:1rem">✦</div>
+      <h3 style="font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--hijau-hutan);margin-bottom:1rem">Terima Kasih!</h3>
+      <p style="font-family:'Lora',serif;color:var(--abu);line-height:1.7">Tulisan Anda telah berhasil dikirim ke tim redaksi. Kami akan menghubungi Anda melalui email dalam waktu 5–7 hari kerja.</p>
+      <button class="btn-primary" style="margin-top:2rem" onclick="document.getElementById('submit-modal').classList.remove('open');document.body.style.overflow=''">Kembali ke Beranda</button>
+    </div>
+  `;
+}
+
+function subscribeNewsletter() {
+  const email = document.getElementById('newsletter-email').value;
+  if (!email || !email.includes('@')) {
+    alert('Masukkan alamat email yang valid.');
+    return;
+  }
+  alert('Terima kasih! Anda berhasil berlangganan newsletter Suara Burung Kuning.');
+  document.getElementById('newsletter-email').value = '';
+}
+
+// ─── MOBILE MENU ────────────────────────────────────────────────────────
+function toggleMenu() {
+  const navLinks = document.querySelector('.nav-links');
+  if (navLinks.style.display === 'flex') {
+    navLinks.style.display = 'none';
+  } else {
+    navLinks.style.display = 'flex';
+    navLinks.style.flexDirection = 'column';
+    navLinks.style.position = 'absolute';
+    navLinks.style.top = '64px';
+    navLinks.style.left = '0';
+    navLinks.style.right = '0';
+    navLinks.style.background = 'rgba(27,58,45,0.97)';
+    navLinks.style.padding = '2rem';
+  }
+}
+
+// ─── SCROLL ANIMATIONS & INIT (DOMContentLoaded) ────────────────────────
+document.addEventListener("DOMContentLoaded", function() {
+  // Render artikel saat halaman siap
+  window._currentFilter = 'all';
+  renderArticles('all');
+
+  // Animasi Fade Up saat halaman di-scroll
+  const fadeElements = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  fadeElements.forEach(el => observer.observe(el));
+});
+
+// Tutup modal dengan tombol Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.open').forEach(m => {
+      m.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  }
+});
+
+// Cegah navigasi default pada kartu artikel
+document.addEventListener('click', e => {
+  if (e.target.closest('.article-card') || e.target.closest('.featured-card') || e.target.closest('.sidebar-card')) {
+    e.preventDefault();
+  }
+});
+</script>
+</body>
+</html>
